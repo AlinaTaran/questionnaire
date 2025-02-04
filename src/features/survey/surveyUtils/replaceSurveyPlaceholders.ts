@@ -19,6 +19,9 @@ export function replaceSurveyPlaceholders({
 }: ReplaceSurveyTextProps): string {
   const replacements: Record<string, string> = {};
 
+  const capitalize = (word: string) =>
+    word.charAt(0).toUpperCase() + word.slice(1);
+
   const mapping: ReplacementMapping = {
     single: () =>
       relationshipStatus === RelationshipStatus.Single
@@ -27,7 +30,7 @@ export function replaceSurveyPlaceholders({
     gender: () =>
       relationshipStatus === RelationshipStatus.Single
         ? gender
-        : gender.charAt(0).toUpperCase() + gender.slice(1),
+        : capitalize(gender),
     'who have children': () => (hasChildren ? 'who have children' : ''),
   };
 

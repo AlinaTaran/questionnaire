@@ -8,8 +8,8 @@ import SurveyAnswer from 'features/survey/SurveyAnswer';
 import { formatSurveyAnswers } from 'features/finish/finishUtils/formatSurveyAnswers';
 import { selectUserProfile } from '@/store/selectors';
 import { SurveyData } from 'features/survey/surveyTypes';
-import { useRouter } from 'next/router';
 import { resetQuestionnaire } from '@/store/questionnaireSlice';
+import { useRouter } from 'next/navigation';
 
 interface FinishScreenProps {
   survey: SurveyData;
