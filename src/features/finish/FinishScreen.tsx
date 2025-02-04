@@ -5,7 +5,7 @@ import { useAppSelector } from '@/store/hooks';
 import Button from 'components/Button';
 import SurveyAnswer from 'features/survey/SurveyAnswer';
 
-import { useResetSurvey } from 'features/finish/useResetSurvey';
+import { useFinishResetSurvey } from 'features/finish/useFinishResetSurvey';
 import { formatSurveyAnswers } from 'features/finish/finishUtils/formatSurveyAnswers';
 import { selectUserProfile } from '@/store/selectors';
 import { SurveyData } from 'features/survey/surveyTypes';
@@ -16,7 +16,7 @@ interface FinishScreenProps {
 
 export default function FinishScreen({ survey }: FinishScreenProps) {
   const userProfile = useAppSelector(selectUserProfile);
-  const handleRestart = useResetSurvey();
+  const handleRestart = useFinishResetSurvey();
 
   const formattedAnswers = useMemo(
     () => formatSurveyAnswers(userProfile, survey),

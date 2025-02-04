@@ -13,23 +13,30 @@ const initialState: QuestionnaireState = {
   relationshipStatus: RelationshipStatus.Single,
 };
 
+const profileUpdateMapping: Record<
+  string,
+  (state: QuestionnaireState, answer: string) => void
+> = {
+  gender: (state, answer) => {
+    state.gender = answer as Gender;
+  },
+  relationship: (state, answer) => {
+    state.relationshipStatus = answer as RelationshipStatus;
+  },
+  hasChildren: (state, answer) => {
+    state.hasChildren = answer.toLowerCase() === 'yes';
+  },
+};
+
 const updateUserProfile = (
   state: QuestionnaireState,
   category?: string,
   answer?: string,
 ) => {
   if (!category || !answer) return;
-
-  switch (category) {
-    case 'gender':
-      state.gender = answer as Gender;
-      break;
-    case 'relationship':
-      state.relationshipStatus = answer as RelationshipStatus;
-      break;
-    case 'hasChildren':
-      state.hasChildren = answer === 'yes';
-      break;
+  const updateFn = profileUpdateMapping[category];
+  if (updateFn) {
+    updateFn(state, answer);
   }
 };
 
@@ -38,12 +45,15 @@ const updateHistory = (
   questionId: string,
   nextQuestionId?: string,
 ) => {
-  if (!state.history.includes(questionId)) state.history.push(questionId);
-
-  if (nextQuestionId === 'finish') {
-    state.history = [];
-  } else if (nextQuestionId && !state.history.includes(nextQuestionId)) {
-    state.history.push(nextQuestionId);
+  if (!state.history.includes(questionId)) {
+    state.history.push(questionId);
+  }
+  if (nextQuestionId) {
+    if (nextQuestionId === 'finish') {
+      state.history = [];
+    } else if (!state.history.includes(nextQuestionId)) {
+      state.history.push(nextQuestionId);
+    }
   }
 };
 
@@ -61,17 +71,16 @@ const questionnaireSlice = createSlice({
       }>,
     ) => {
       const { questionId, category, answer, nextQuestionId } = action.payload;
-
       state.answers[questionId] = answer;
       updateUserProfile(state, category, answer);
       updateHistory(state, questionId, nextQuestionId);
     },
-
     goBack: (state) => {
-      if (state.history.length > 1) state.history.pop();
+      if (state.history.length > 1) {
+        state.history.pop();
+      }
     },
-
-    resetQuestionnaire: () => initialState,
+    resetQuestionnaire: () => ({ ...initialState }),
   },
 });
 

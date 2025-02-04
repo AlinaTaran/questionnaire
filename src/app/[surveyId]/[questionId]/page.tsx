@@ -1,5 +1,5 @@
 import { fetchSurveyById } from 'server/fetchSurveyById';
-import QuestionScreen from './QuestionScreen';
+import QuestionScreen from '../../../features/question/QuestionScreen';
 import { fetchAllSurveyIds } from 'server/fetchAllSurveyIds';
 import SurveyWrapper from 'features/survey/SurveyWrapper';
 import { SurveyData } from 'features/survey/surveyTypes';

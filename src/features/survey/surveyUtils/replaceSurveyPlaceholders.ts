@@ -1,14 +1,11 @@
-import placeholderReplacer from 'features/survey/surveyUtils/placeholderReplacer';
-import { RelationshipStatus } from 'features/question/questionTypes';
-import {
-  getGenderReplacement,
-  getHasChildrenReplacement,
-  getSinglePrefix,
-} from './replacementHelpers';
+import { RelationshipStatus } from '../surveyTypes';
+import placeholderReplacer from './placeholderReplacer';
 
+interface ReplacementMapping {
+  [key: string]: () => string;
+}
 interface ReplaceSurveyTextProps {
   text: string;
-  category?: string;
   gender: string;
   hasChildren: boolean;
   relationshipStatus: RelationshipStatus;
@@ -16,17 +13,24 @@ interface ReplaceSurveyTextProps {
 
 export function replaceSurveyPlaceholders({
   text,
-  category,
   gender,
   hasChildren,
   relationshipStatus,
 }: ReplaceSurveyTextProps): string {
-  const replacements: Record<string, string> = {
-    '{gender}': getGenderReplacement(gender),
-    '{who have children (if have children)}':
-      getHasChildrenReplacement(hasChildren),
-    '{singlePrefix}': getSinglePrefix(category, relationshipStatus),
+  const replacements: Record<string, string> = {};
+
+  const mapping: ReplacementMapping = {
+    relationshipStatus: () =>
+      relationshipStatus === RelationshipStatus.Single ? 'Single' : '',
+    gender: () => gender.charAt(0).toUpperCase() + gender.slice(1),
+    'who have children': () => (hasChildren ? 'who have children' : ''),
   };
+
+  Object.keys(mapping).forEach((key) => {
+    if (text.includes(`{${key}}`)) {
+      replacements[key] = mapping[key]();
+    }
+  });
 
   return placeholderReplacer(text, replacements);
 }

@@ -1,5 +1,5 @@
 import { fetchAllSurveyIds } from 'server/fetchAllSurveyIds';
-import FinishScreen from './FinishScreen';
+import FinishScreen from '../../../features/finish/FinishScreen';
 import { fetchSurveyById } from 'server/fetchSurveyById';
 
 type StaticParam = {

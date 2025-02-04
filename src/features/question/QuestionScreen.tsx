@@ -5,7 +5,7 @@ import { useAppSelector } from '@/store/hooks';
 import TextInput from 'components/TextInput';
 import RadioOptions from 'components/RadioOptions';
 import QuestionText from 'features/question/QuestionText';
-import { useQuestionLogic } from 'app/hooks/useQuestionLogic';
+import { useQuestionLogic } from 'hooks/useQuestionLogic';
 import { selectUserProfile } from '@/store/selectors';
 import { SurveyData, SurveyQuestion } from 'features/survey/surveyTypes';
 

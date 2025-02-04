@@ -3,7 +3,7 @@ import { useAppDispatch } from '@/store/hooks';
 import { resetQuestionnaire } from '@/store/questionnaireSlice';
 import { useRouter } from 'next/navigation';
 
-export function useResetSurvey() {
+export function useFinishResetSurvey() {
   const dispatch = useAppDispatch();
   const router = useRouter();
 

@@ -1,8 +1,8 @@
 import { replaceSurveyPlaceholders } from 'features/survey/surveyUtils/replaceSurveyPlaceholders';
 import { SurveyData, SurveyQuestion } from 'features/survey/surveyTypes';
-import { UserSurveyProfile } from '../finishTypes';
+import { UserSurveyProfile } from 'features/finish/finishTypes';
 
-interface FormattedAnswer {
+export interface FormattedAnswer {
   id: string;
   text: string;
   answer: string;
@@ -17,7 +17,7 @@ export function formatSurveyAnswers(
 
   return validAnswers
     .map(([qId, ans]) => formatAnswer(qId, ans, questionsMap, userProfile))
-    .filter(Boolean) as FormattedAnswer[]; // Фільтруємо `null`
+    .filter((item): item is FormattedAnswer => item !== null);
 }
 
 function createQuestionsMap(survey: SurveyData): Map<string, SurveyQuestion> {
@@ -41,12 +41,19 @@ function formatAnswer(
   const question = questionsMap.get(qId);
   if (!question) return null;
 
+  const formattedText = replaceSurveyPlaceholders({
+    text: question.questionText,
+    gender: userProfile.gender,
+    hasChildren: userProfile.hasChildren,
+    relationshipStatus: userProfile.relationshipStatus,
+  });
+
+  const answerLabel =
+    question.answers.find((a) => a.value === ans)?.label || ans;
+
   return {
     id: qId,
-    text: replaceSurveyPlaceholders({
-      text: question.questionText,
-      ...userProfile,
-    }),
-    answer: question.answers.find((a) => a.value === ans)?.label || ans,
+    text: formattedText,
+    answer: answerLabel,
   };
 }

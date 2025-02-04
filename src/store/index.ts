@@ -1,23 +1,23 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { persistReducer, persistStore } from 'redux-persist';
+
 import questionnaireReducer from './questionnaireSlice';
 
+const rootReducer = combineReducers({
+  questionnaire: questionnaireReducer,
+});
+
 const persistConfig = {
-  key: 'questionnaire',
+  key: 'root',
   storage,
-  whitelist: ['answers', 'history'],
+  whitelist: ['questionnaire'],
 };
 
-const persistedQuestionnaireReducer = persistReducer(
-  persistConfig,
-  questionnaireReducer,
-);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: {
-    questionnaire: persistedQuestionnaireReducer,
-  },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
