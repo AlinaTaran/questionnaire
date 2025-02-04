@@ -1,0 +1,407 @@
+{
+    "surveyId": "survey3",
+    "title": "Introductory survey(copy2)",
+    "questions": [
+        {
+            "id": "q1",
+            "screenType": "radio",
+            "category": "gender",
+            "questionText": "Select your gender:",
+            "answers": [
+                {
+                    "value": "male",
+                    "label": "Male",
+                    "goTo": "q2"
+                },
+                {
+                    "value": "female",
+                    "label": "Female",
+                    "goTo": "q2"
+                }
+            ]
+        },
+        {
+            "id": "q2",
+            "screenType": "radio",
+            "category": "relationship",
+            "questionText": "So we can get to know you better, tell us about your relationship status.",
+            "answers": [
+                {
+                    "value": "single",
+                    "label": "Single",
+                    "goTo": "q3a"
+                },
+                {
+                    "value": "relationship",
+                    "label": "In a relationship",
+                    "goTo": "q3b"
+                }
+            ]
+        },
+        {
+            "id": "q3a",
+            "screenType": "radio",
+            "category": "hasChildren",
+            "questionText": "Are you a single parent?",
+            "answers": [
+                {
+                    "value": "yes",
+                    "label": "Yes",
+                    "goTo": "q4a"
+                },
+                {
+                    "value": "no",
+                    "label": "No",
+                    "goTo": "q4a"
+                }
+            ]
+        },
+        {
+            "id": "q3b",
+            "screenType": "radio",
+            "category": "hasChildren",
+            "questionText": "Are you a parent?",
+            "answers": [
+                {
+                    "value": "yes",
+                    "label": "Yes",
+                    "goTo": "q4b"
+                },
+                {
+                    "value": "no",
+                    "label": "No",
+                    "goTo": "q4b"
+                }
+            ]
+        },
+        {
+            "id": "q4a",
+            "screenType": "radio",
+            "questionText": "Single {gender} {who have children (if have children)} need a slightly different approach to improve their relationship. Which statement best describes you?",
+            "answers": [
+                {
+                    "value": "veryUnhappy",
+                    "label": "I’m very unhappy with how things are going in my relationship",
+                    "goTo": "q5a"
+                },
+                {
+                    "value": "unhappy",
+                    "label": "I’m unhappy with parts of my relationship, but some things are working well",
+                    "goTo": "q5a"
+                },
+                {
+                    "value": "happy",
+                    "label": "I’m generally happy in my relationship",
+                    "goTo": "q5a"
+                }
+            ]
+        },
+        {
+            "id": "q4b",
+            "screenType": "radio",
+            "questionText": "{Gender} {who have children (if have children)} need a slightly different approach to find their perfect partner. But first, how did you feel in your last relationship?",
+            "answers": [
+                {
+                    "value": "unhappyLow",
+                    "label": "I was unhappy with low things were going in my relationship",
+                    "goTo": "q5b"
+                },
+                {
+                    "value": "unhappyParts",
+                    "label": "I was unhappy with parts of my relationship, but some thing were working",
+                    "goTo": "q5b"
+                },
+                {
+                    "value": "generallyHappy",
+                    "label": "I’m generally happy in my relationship",
+                    "goTo": "q5b"
+                },
+                {
+                    "value": "neverBeen",
+                    "label": "I’ve never been in a relationship",
+                    "goTo": "q5b"
+                }
+            ]
+        },
+        {
+            "id": "q5a",
+            "screenType": "radio",
+            "questionText": "Do you tend to overthink?",
+            "answers": [
+                {
+                    "value": "yes",
+                    "label": "Yes",
+                    "goTo": "q6a"
+                },
+                {
+                    "value": "no",
+                    "label": "No",
+                    "goTo": "q6b"
+                }
+            ]
+        },
+        {
+            "id": "q5b",
+            "screenType": "radio",
+            "questionText": "Is your partner an introvert or extrovert?",
+            "answers": [
+                {
+                    "value": "introvert",
+                    "label": "Introvert",
+                    "goTo": "q6bb"
+                },
+                {
+                    "value": "extrovert",
+                    "label": "Extrovert",
+                    "goTo": "q6bb"
+                },
+                {
+                    "value": "both",
+                    "label": "A bit of both",
+                    "goTo": "q6bb"
+                }
+            ]
+        },
+        {
+            "id": "q6a",
+            "screenType": "radio",
+            "category": "next",
+            "questionText": "So how does it work?",
+            "description": "We analyze hundreds of data points to create your unique astrological blueprint. This is combined with AI to tailor-make your astrological insights, based on your answers. We’re going to change your relationship with astrology.",
+            "answers": [
+                {
+                    "value": "next",
+                    "label": "Next",
+                    "goTo": "q7a"
+                }
+            ]
+        },
+        {
+            "id": "q6b",
+            "screenType": "radio",
+            "questionText": "So how does it work?",
+            "category": "next",
+            "description": "We analyze hundreds of data points to create your unique astrological blueprint. This is combined with AI to tailor-make your astrological insights, based on your answers. We’re going to change your relationship with astrology.",
+            "answers": [
+                {
+                    "value": "next",
+                    "label": "Next",
+                    "goTo": "q7b"
+                }
+            ]
+        },
+        {
+            "id": "q6bb",
+            "screenType": "radio",
+            "questionText": "What is your partner’s gender?",
+            "answers": [
+                {
+                    "value": "male",
+                    "label": "Male",
+                    "goTo": "q7bb"
+                },
+                {
+                    "value": "female",
+                    "label": "Female",
+                    "goTo": "q7bb"
+                }
+            ]
+        },
+        {
+            "id": "q7a",
+            "screenType": "radio",
+            "questionText": "What is most important to you?",
+            "answers": [
+                {
+                    "value": "success",
+                    "label": "Success",
+                    "goTo": "q9"
+                },
+                {
+                    "value": "romance",
+                    "label": "Romance",
+                    "goTo": "q9"
+                },
+                {
+                    "value": "stability",
+                    "label": "Stability",
+                    "goTo": "q9"
+                },
+                {
+                    "value": "freedom",
+                    "label": "Freedom",
+                    "goTo": "q9"
+                }
+            ]
+        },
+        {
+            "id": "q7b",
+            "screenType": "radio",
+            "questionText": "Is emotional control tricky for you?",
+            "answers": [
+                {
+                    "value": "yes",
+                    "label": "Yes",
+                    "goTo": "q9"
+                },
+                {
+                    "value": "sometime",
+                    "label": "Sometime",
+                    "goTo": "q9"
+                },
+                {
+                    "value": "rarely",
+                    "label": "Rarely",
+                    "goTo": "q9"
+                },
+                {
+                    "value": "notAtAll",
+                    "label": "Not at all",
+                    "goTo": "q9"
+                }
+            ]
+        },
+        {
+            "id": "q7bb",
+            "screenType": "radio",
+            "questionText": "Do you agree with the statement below?",
+            "statement": "“My partner and I make sex a priority in our relationship”",
+            "answers": [
+                {
+                    "value": "stronglyAagree",
+                    "label": "Strongly agree",
+                    "goTo": "q8bb"
+                },
+                {
+                    "value": "agree",
+                    "label": "Agree",
+                    "goTo": "q8bb"
+                },
+                {
+                    "value": "neutral",
+                    "label": "Neutral",
+                    "goTo": "q8bb"
+                },
+                {
+                    "value": "disagree",
+                    "label": "Disagree",
+                    "goTo": "q8bb"
+                },
+                {
+                    "value": "stronglyDisagree",
+                    "label": "Strongly disagree",
+                    "goTo": "q8bb"
+                }
+            ]
+        },
+        {
+            "id": "q8bb",
+            "screenType": "radio",
+            "questionText": "When you think about your relationship goals, you feel...?",
+            "answers": [
+                {
+                    "value": "optimistic",
+                    "label": "Optimistic! They are totally doable, with some guidance.",
+                    "goTo": "q9"
+                },
+                {
+                    "value": "cautious",
+                    "label": "Cautious. I’ve struggled before, but I’m hopeful.",
+                    "goTo": "q9"
+                },
+                {
+                    "value": "anxious",
+                    "label": "I’m feeling a little anxious, honestly.",
+                    "goTo": "q9"
+                }
+            ]
+        },
+        {
+            "id": "q9",
+            "screenType": "radio",
+            "questionText": "Where did you hear about us?",
+            "answers": [
+                {
+                    "value": "poster",
+                    "label": "Poster or Billboard",
+                    "goTo": "finish"
+                },
+                {
+                    "value": "friend",
+                    "label": "Friend or Family",
+                    "goTo": "finish"
+                },
+                {
+                    "value": "instagram",
+                    "label": "Instagram",
+                    "goTo": "finish"
+                },
+                {
+                    "value": "directMail",
+                    "label": "Direct Mail or Package Insert",
+                    "goTo": "finish"
+                },
+                {
+                    "value": "onlineTv",
+                    "label": "Online TV or Streaming TV",
+                    "goTo": "finish"
+                },
+                {
+                    "value": "tv",
+                    "label": "TV",
+                    "goTo": "finish"
+                },
+                {
+                    "value": "radio",
+                    "label": "Radio",
+                    "goTo": "finish"
+                },
+                {
+                    "value": "searchEngine",
+                    "label": "Search Engine (Google, Bing, etc.)",
+                    "goTo": "finish"
+                },
+                {
+                    "value": "newspaper",
+                    "label": "Newspaper or Magazine",
+                    "goTo": "finish"
+                },
+                {
+                    "value": "facebook",
+                    "label": "Facebook",
+                    "goTo": "finish"
+                },
+                {
+                    "value": "blog",
+                    "label": "Blog Post or Website Review",
+                    "goTo": "finish"
+                },
+                {
+                    "value": "podcast",
+                    "label": "Podcast",
+                    "goTo": "finish"
+                },
+                {
+                    "value": "influencer",
+                    "label": "Influencer",
+                    "goTo": "finish"
+                },
+                {
+                    "value": "youtube",
+                    "label": "Youtube",
+                    "goTo": "finish"
+                },
+                {
+                    "value": "pinterest",
+                    "label": "Pinterest",
+                    "goTo": "finish"
+                },
+                {
+                    "value": "other",
+                    "label": "Other",
+                    "goTo": "finish"
+                }
+            ]
+        }
+    ]
+}
