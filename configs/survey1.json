@@ -77,7 +77,7 @@
         {
             "id": "q4a",
             "screenType": "radio",
-            "questionText": "{relationshipStatus} {gender} {who have children} need a slightly different approach to improve their relationship. Which statement best describes you?",
+            "questionText": "{single} {gender} {who have children} need a slightly different approach to improve their relationship. Which statement best describes you?",
             "answers": [
                 {
                     "value": "veryUnhappy",

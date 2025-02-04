@@ -20,8 +20,10 @@ export function replaceSurveyPlaceholders({
   const replacements: Record<string, string> = {};
 
   const mapping: ReplacementMapping = {
-    relationshipStatus: () =>
-      relationshipStatus === RelationshipStatus.Single ? 'Single' : '',
+    single: () =>
+      relationshipStatus === RelationshipStatus.Single
+        ? 'Single'
+        : 'no longer single',
     gender: () => gender.charAt(0).toUpperCase() + gender.slice(1),
     'who have children': () => (hasChildren ? 'who have children' : ''),
   };
