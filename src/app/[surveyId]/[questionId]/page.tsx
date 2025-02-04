@@ -3,13 +3,6 @@ import QuestionScreen from './QuestionScreen';
 import { fetchAllSurveyIds } from 'server/fetchAllSurveyIds';
 import SurveyWrapper from 'features/survey/SurveyWrapper';
 
-type PageProps = {
-  params: {
-    surveyId: string;
-    questionId: string;
-  };
-};
-
 type StaticParam = {
   surveyId: string;
   questionId: string;
@@ -31,8 +24,11 @@ export async function generateStaticParams(): Promise<StaticParam[]> {
 
   return allParams;
 }
-
-export default async function QuestionPage({ params }: PageProps) {
+export default async function QuestionPage({
+  params,
+}: {
+  params: Promise<{ surveyId: string; questionId: string }>;
+}) {
   const { surveyId, questionId } = await params;
 
   const survey = await fetchSurveyById(surveyId);
