@@ -24,7 +24,10 @@ export function replaceSurveyPlaceholders({
       relationshipStatus === RelationshipStatus.Single
         ? 'Single'
         : 'no longer single',
-    gender: () => gender.charAt(0).toUpperCase() + gender.slice(1),
+    gender: () =>
+      relationshipStatus === RelationshipStatus.Single
+        ? gender
+        : gender.charAt(0).toUpperCase() + gender.slice(1),
     'who have children': () => (hasChildren ? 'who have children' : ''),
   };
 
