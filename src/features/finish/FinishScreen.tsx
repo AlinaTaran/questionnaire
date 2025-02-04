@@ -1,14 +1,15 @@
 'use client';
 
-import React, { useMemo } from 'react';
-import { useAppSelector } from '@/store/hooks';
+import React, { useCallback, useMemo } from 'react';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import Button from 'components/Button';
 import SurveyAnswer from 'features/survey/SurveyAnswer';
 
-import { useFinishResetSurvey } from 'features/finish/useFinishResetSurvey';
 import { formatSurveyAnswers } from 'features/finish/finishUtils/formatSurveyAnswers';
 import { selectUserProfile } from '@/store/selectors';
 import { SurveyData } from 'features/survey/surveyTypes';
+import { useRouter } from 'next/router';
+import { resetQuestionnaire } from '@/store/questionnaireSlice';
 
 interface FinishScreenProps {
   survey: SurveyData;
@@ -16,7 +17,13 @@ interface FinishScreenProps {
 
 export default function FinishScreen({ survey }: FinishScreenProps) {
   const userProfile = useAppSelector(selectUserProfile);
-  const handleRestart = useFinishResetSurvey();
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  const handleRestart = useCallback(() => {
+    dispatch(resetQuestionnaire());
+    router.push('/');
+  }, [dispatch, router]);
 
   const formattedAnswers = useMemo(
     () => formatSurveyAnswers(userProfile, survey),
