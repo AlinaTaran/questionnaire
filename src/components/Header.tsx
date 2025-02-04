@@ -8,7 +8,7 @@ interface HeaderProps {
   isSpecialScreen?: boolean;
 }
 
-export default function Header({ surveyId, isSpecialScreen }: HeaderProps) {
+const Header = ({ surveyId, isSpecialScreen }: HeaderProps) => {
   const iconColor = isSpecialScreen ? '#FFFFFF' : '#333333';
 
   return (
@@ -22,4 +22,6 @@ export default function Header({ surveyId, isSpecialScreen }: HeaderProps) {
       <Logo isSpecialScreen={isSpecialScreen} />
     </header>
   );
-}
+};
+
+export default Header;

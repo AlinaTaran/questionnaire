@@ -13,27 +13,25 @@ interface BackButtonProps {
   color?: string;
 }
 
-export default function BackButton({
+const BackButton = ({
   surveyId,
   className = '',
   color = '#333',
-}: BackButtonProps) {
+}: BackButtonProps) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
   const history = useAppSelector(selectHistory);
 
   const handleGoBack = useCallback(() => {
-    if (history.length === 0) {
+    if (history.length <= 1) {
       dispatch(resetQuestionnaire());
       router.push('/');
-    } else if (history.length === 1) {
-      router.push('/');
-    } else {
-      dispatch(goBack());
-      const prevQuestionId = history[history.length - 2];
-      router.push(`/${surveyId}/${prevQuestionId}`);
+      return;
     }
+
+    dispatch(goBack());
+    router.push(`/${surveyId}/${history[history.length - 2]}`);
   }, [history, surveyId, dispatch, router]);
 
   return (
@@ -44,4 +42,6 @@ export default function BackButton({
       <ArrowLeftIcon size={20} color={color} className="mr-2" />
     </button>
   );
-}
+};
+
+export default BackButton;

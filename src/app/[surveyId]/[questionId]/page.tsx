@@ -2,6 +2,7 @@ import { fetchSurveyById } from 'server/fetchSurveyById';
 import QuestionScreen from './QuestionScreen';
 import { fetchAllSurveyIds } from 'server/fetchAllSurveyIds';
 import SurveyWrapper from 'features/survey/SurveyWrapper';
+import { SurveyData } from 'features/survey/surveyTypes';
 
 type StaticParam = {
   surveyId: string;
@@ -11,19 +12,22 @@ type StaticParam = {
 export async function generateStaticParams(): Promise<StaticParam[]> {
   const surveyIds = await fetchAllSurveyIds();
 
-  const allParams: StaticParam[] = [];
+  const surveys = await Promise.all(
+    surveyIds.map((surveyId) => fetchSurveyById(surveyId)),
+  );
 
-  for (const surveyId of surveyIds) {
-    const survey = await fetchSurveyById(surveyId);
-    if (!survey) continue;
-
-    survey.questions.forEach((q) => {
-      allParams.push({ surveyId, questionId: q.id });
-    });
-  }
-
-  return allParams;
+  return surveys
+    .filter(
+      (survey): survey is SurveyData => survey !== null && survey !== undefined,
+    )
+    .flatMap((survey) =>
+      survey.questions.map((q) => ({
+        surveyId: survey.surveyId,
+        questionId: q.id,
+      })),
+    );
 }
+
 export default async function QuestionPage({
   params,
 }: {

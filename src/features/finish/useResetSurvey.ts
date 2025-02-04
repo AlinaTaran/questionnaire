@@ -9,6 +9,6 @@ export function useResetSurvey() {
 
   return useCallback(() => {
     dispatch(resetQuestionnaire());
-    router.push('/'); // ✅ Reset & Navigate Home
+    router.push('/');
   }, [dispatch, router]);
 }

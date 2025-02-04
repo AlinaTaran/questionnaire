@@ -4,7 +4,7 @@ interface LogoProps {
   isSpecialScreen?: boolean;
 }
 
-export default function Logo({ isSpecialScreen = false }: LogoProps) {
+const Logo = ({ isSpecialScreen = false }: LogoProps) => {
   return (
     <Image
       src={isSpecialScreen ? '/logo-dark.svg' : '/logo-white.svg'}
@@ -14,4 +14,6 @@ export default function Logo({ isSpecialScreen = false }: LogoProps) {
       height={24}
     />
   );
-}
+};
+
+export default Logo;

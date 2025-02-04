@@ -9,13 +9,7 @@ type StaticParam = {
 export async function generateStaticParams(): Promise<StaticParam[]> {
   const surveyIds = await fetchAllSurveyIds();
 
-  const allParams: StaticParam[] = [];
-
-  for (const surveyId of surveyIds) {
-    allParams.push({ surveyId });
-  }
-
-  return allParams;
+  return surveyIds.map((surveyId) => ({ surveyId }));
 }
 
 export default async function QuestionPage({
